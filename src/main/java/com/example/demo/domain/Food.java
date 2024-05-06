@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "my_user")
-public class User {
+@Table(name = "food")
+public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,14 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "user")
-    private List<Food> foods;
+    @Column(name = "best_before_date")
+    private LocalDate bestBeforeDate;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private FoodType foodType;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
