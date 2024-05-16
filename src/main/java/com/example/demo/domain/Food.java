@@ -29,6 +29,6 @@ public class Food {
     private FoodType foodType;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "myUser_id")
+    private MyUser myUser;
 }
