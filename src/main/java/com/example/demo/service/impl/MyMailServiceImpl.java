@@ -2,17 +2,23 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dto.RegistrationRequest;
 import com.example.demo.service.MyMailService;
+import lombok.extern.slf4j.Slf4j;
 import org.simplejavamail.api.email.Email;
 import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.api.mailer.config.TransportStrategy;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.MailerBuilder;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Slf4j
 @Service
 public class MyMailServiceImpl implements MyMailService {
+
+    Map<String, String> env = System.getenv();
+
+    String smtpPassword = env.get("SMTP_PASSWORD");
 
     public void sendEmail(String to, String subject, String body) {
 
@@ -26,7 +32,7 @@ public class MyMailServiceImpl implements MyMailService {
         Mailer mailer = MailerBuilder
                 .withSMTPServer("live.smtp.mailtrap.io", 587)
                 .withSMTPServerUsername("api")
-                .withSMTPServerPassword("201b6d1c6e2c9665f0afd4426761a856")
+                .withSMTPServerPassword(smtpPassword)
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
                 .buildMailer();
 

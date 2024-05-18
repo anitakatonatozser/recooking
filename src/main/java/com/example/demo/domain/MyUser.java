@@ -1,11 +1,11 @@
 package com.example.demo.domain;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,6 +39,6 @@ public class MyUser {
     @Column(name = "join_date", columnDefinition = "TIMESTAMP")
     private LocalDateTime joinDate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "myUser")
     private List<Food> foods;
 }
