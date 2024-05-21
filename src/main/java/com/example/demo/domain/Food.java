@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "food")
 public class Food {
@@ -20,6 +22,9 @@ public class Food {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "amount")
+    private Integer amount;
 
     @Column(name = "best_before_date")
     private LocalDate bestBeforeDate;
