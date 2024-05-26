@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/foods")
 public class FoodController {
 
-    private FoodService foodService;
+    private final FoodService foodService;
 
     @Autowired
     public FoodController(FoodService foodService) {
