@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,31 +10,34 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "food")
-public class Food {
+@Table(name = "donations")
+public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "amount")
-    private Integer amount;
+    @Column
+    private String description;
 
-    @Column(name = "best_before_date")
-    private LocalDate bestBeforeDate;
+    @Column(nullable = false)
+    private LocalDate expiryDate;
 
-    @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private FoodType foodType;
+    @Column(nullable = false)
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "myUser_id")
-    private MyUser myUser;
+    @JoinColumn(name = "donor_id", nullable = false)
+    private MyUser donor;
+
+    @Column
+    private String photoUrl;
+
 }

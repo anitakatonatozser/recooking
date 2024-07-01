@@ -43,7 +43,6 @@ public class MyUserDetailService implements UserDetailsService {
                 .email(registrationRequest.getEmail())
                 .userName(registrationRequest.getUserName())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
-                .roles("ROLE_USER")
                 .joinDate(LocalDateTime.now())
                 .build();
         myUserDetailsRepository.save(myUser);
@@ -54,7 +53,6 @@ public class MyUserDetailService implements UserDetailsService {
     public void adminUser(Long userId) {
         MyUser myUser = myUserDetailsRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + userId));
-        myUser.setRoles("ROLE_ADMIN");
         myUserDetailsRepository.save(myUser);
     }
 }

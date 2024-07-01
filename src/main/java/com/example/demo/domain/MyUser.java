@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Data
 @Builder
@@ -18,27 +18,25 @@ import java.util.List;
 public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "active")
+    @Column
     private boolean active;
 
-    @Column(name = "e_mail")
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "user_name")
+    @Column(nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "roles")
-    private String roles;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
-    @Column(name = "join_date", columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime joinDate;
 
-    @OneToMany(mappedBy = "myUser")
-    private List<Food> foods;
 }

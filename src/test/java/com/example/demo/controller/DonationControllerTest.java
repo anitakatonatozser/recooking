@@ -4,7 +4,7 @@ import com.example.demo.domain.Food;
 import com.example.demo.domain.FoodType;
 import com.example.demo.dto.FoodRegisterDto;
 import com.example.demo.dto.FoodResponseDto;
-import com.example.demo.service.FoodService;
+import com.example.demo.service.DonationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,19 +15,17 @@ import static org.mockito.Mockito.when;
 
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
-class FoodControllerTest {
+class DonationControllerTest {
 
     private MockMvc mockMvc;
 
     @Mock
-    private FoodService foodService;
+    private DonationService donationService;
 
     @BeforeEach
     void init(){
-        FoodController underTest = new FoodController(foodService);
+        DonationController underTest = new DonationController(donationService);
         mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
     }
 
@@ -41,7 +39,7 @@ class FoodControllerTest {
         food.setName("tomato");
         food.setAmount(1);
         food.setFoodType(FoodType.VEGETABLES);
-        when(foodService.registerFood(foodRegisterDto)).thenReturn(new FoodResponseDto(food));
+        when(donationService.registerFood(foodRegisterDto)).thenReturn(new FoodResponseDto(food));
 
 
 

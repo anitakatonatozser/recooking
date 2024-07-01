@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,5 @@ public class RegistrationRequest {
     @NotBlank(message = "must not be blank")
     @Min(3)
     private String password;
+    private Role role;
 }
